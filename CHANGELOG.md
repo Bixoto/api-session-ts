@@ -1,6 +1,6 @@
 # api-session-ts Changelog
 
-## 0.0.3 (unreleased)
+## 0.0.3 (2025/01/21)
 
 * Rename `.delete_()` as `.delete()`
 * Declare the package as a module
