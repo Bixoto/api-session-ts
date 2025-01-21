@@ -6,6 +6,7 @@
     "build": "tsc",
     "test": "true"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bixoto/api-session-ts.git"

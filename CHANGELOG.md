@@ -3,6 +3,7 @@
 ## 0.0.3 (unreleased)
 
 * Rename `.delete_()` as `.delete()`
+* Declare the package as a module
 
 ## 0.0.2 (2025/01/21)
 
