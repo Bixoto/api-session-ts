@@ -20,6 +20,9 @@ export type Init = RequestInit & {
 export class APISession {
     readonly base_url: string;
     readonly headers: Record<string, string>;
+    readonly readonly: boolean;
+
+    static readonly READ_METHODS = new Set(['CONNECT', 'GET', 'HEAD', 'OPTIONS', 'TRACE'])
 
     /**
      * @param base_url
@@ -28,6 +31,7 @@ export class APISession {
     constructor(base_url: string, options?: {
         headers?: Record<string, string>,
         user_agent?: string,
+        readonly?: boolean,
     }) {
         if (!options) {
             options = {}
@@ -35,6 +39,7 @@ export class APISession {
 
         this.base_url = base_url;
         this.headers = options.headers || {};
+        this.readonly = options.readonly || false;
 
         if (options.user_agent) {
             this.headers["User-Agent"] = options.user_agent;
@@ -62,8 +67,14 @@ export class APISession {
      * Raise a HTTPError if the response is not successful.
      */
     async fetch(endpoint: string, init?: Init) {
+        const method = (init?.method || 'GET').toUpperCase();
+
+        if (this.readonly && APISession.READ_METHODS.has(method)) {
+            throw new Error(`Can't perform ${method} request in read-only mode.`)
+        }
+
         const url = this.fullUrl(endpoint);
-        console.debug(`HTTP ${init?.method || 'GET'} ${url}` + (init?.body ? ` with ${init?.body}` : ''));
+        console.debug(`HTTP ${method} ${url}` + (init?.body ? ` with ${init?.body}` : ''));
         const response = await fetch(
             url,
             {
