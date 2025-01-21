@@ -135,7 +135,7 @@ export class APISession {
     /**
      * Perform a `DELETE` request.
      */
-    delete_(endpoint: string) {
+    delete(endpoint: string) {
         return this.fetch(endpoint, {method: 'HEAD'});
     }
 
