@@ -1,0 +1,22 @@
+{
+  "name": "api-session-ts",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bixoto/api-session-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bixoto/api-session-ts/issues"
+  },
+  "homepage": "https://github.com/bixoto/api-session-ts#readme",
+  "author": "Baptiste Fontaine <baptiste@bixoto.com>",
+  "license": "MIT",
+  "description": "Base HTTP API client",
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}
