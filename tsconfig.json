@@ -22,7 +22,7 @@
     "sourceMap": true,
     "declaration": true,
     "outDir": "dist",
-    "baseUrl": ".",
+    "baseUrl": "src/",
     "paths": {
       "*": [
         "node_modules/*",
