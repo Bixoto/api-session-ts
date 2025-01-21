@@ -1,12 +1,11 @@
 {
   "name": "api-session-ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
     "test": "true"
   },
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bixoto/api-session-ts.git"

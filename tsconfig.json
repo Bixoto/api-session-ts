@@ -1,36 +1,23 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "target": "es2017",
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "listEmittedFiles": true,
-    "listFiles": false,
-    "noEmitOnError": true,
-    "moduleResolution": "node",
-    "sourceMap": true,
     "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
     "outDir": "dist",
-    "baseUrl": "src/",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es6",
+    // "verbatimModuleSyntax": true,
     "paths": {
       "*": [
-        "node_modules/*",
-        "src/types/*"
+        "./src/*"
       ]
-    }
+    },
+    "baseUrl": "src"
   },
   "include": [
-    "src/**/*"
+    "src"
   ]
 }

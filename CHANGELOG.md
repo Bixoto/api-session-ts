@@ -1,5 +1,9 @@
 # api-session-ts Changelog
 
+## 0.0.4 (2025/01/21)
+
+* Fix exports
+
 ## 0.0.3 (2025/01/21)
 
 * Rename `.delete_()` as `.delete()`
@@ -7,7 +11,6 @@
 
 ## 0.0.2 (2025/01/21)
 
-<!-- * Fix `baseUrl`, so you can import from `api-session-ts` instead of `api-session-ts/src` -->
 * Add `HTTPError`
 * Add default headers, default user-agent, `readonly`
 * Add `.fetch()`, `.getJSON()`, `postJSON`, `putJSON`, `get`, `head`, `delete_`, `options`

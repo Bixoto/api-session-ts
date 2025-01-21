@@ -94,7 +94,7 @@ export class APISession {
     }
 
     async fetchJSON(endpoint: string, init?: Init) {
-        const req = await self.fetch(endpoint, init);
+        const req = await this.fetch(endpoint, init);
         return await req.json();
     }
 
