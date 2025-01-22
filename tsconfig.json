@@ -14,8 +14,7 @@
       "*": [
         "./src/*"
       ]
-    },
-    "baseUrl": "src"
+    }
   },
   "include": [
     "src"
