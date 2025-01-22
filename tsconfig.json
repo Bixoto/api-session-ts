@@ -3,18 +3,16 @@
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "moduleDetection": "force",
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "noUnusedLocals": true,
     "outDir": "dist",
     "sourceMap": true,
     "strict": true,
     "target": "es6",
-    // "verbatimModuleSyntax": true,
-    "paths": {
-      "*": [
-        "./src/*"
-      ]
-    }
+    "isolatedDeclarations": true,
+    "verbatimModuleSyntax": true
   },
   "include": [
     "src"
