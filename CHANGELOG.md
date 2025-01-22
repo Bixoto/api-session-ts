@@ -1,8 +1,8 @@
 # api-session-ts Changelog
 
-## Unreleased
+## 0.0.5 (2025/01/22)
 
-* Fix exports again (#2)
+* Fix exports again
 
 ## 0.0.4 (2025/01/21)
 
