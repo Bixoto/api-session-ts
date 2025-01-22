@@ -22,7 +22,7 @@ export class APISession {
     readonly headers: Record<string, string>;
     readonly readonly: boolean;
 
-    static readonly READ_METHODS = new Set(['CONNECT', 'GET', 'HEAD', 'OPTIONS', 'TRACE'])
+    static readonly READ_METHODS: Set<string> = new Set(['CONNECT', 'GET', 'HEAD', 'OPTIONS', 'TRACE'])
 
     /**
      * @param base_url
@@ -53,7 +53,7 @@ export class APISession {
      * @param endpoint
      * @protected
      */
-    protected fullUrl(endpoint: string) {
+    protected fullUrl(endpoint: string): string {
         if (endpoint.startsWith('http://') || endpoint.startsWith('https://')) {
             return endpoint
         }
@@ -66,7 +66,7 @@ export class APISession {
      * Like fetch() but with the client's default headers and base URL.
      * Raise a HTTPError if the response is not successful.
      */
-    async fetch(endpoint: string, init?: Init) {
+    async fetch(endpoint: string, init?: Init): Promise<Response> {
         const method = (init?.method || 'GET').toUpperCase();
 
         if (this.readonly && APISession.READ_METHODS.has(method)) {
@@ -93,25 +93,25 @@ export class APISession {
         return response;
     }
 
-    async fetchJSON(endpoint: string, init?: Init) {
+    async fetchJSON<T=any>(endpoint: string, init?: Init): Promise<T> {
         const req = await this.fetch(endpoint, init);
-        return await req.json();
+        return await req.json() as T;
     }
 
-    getJSON(endpoint: string) {
-        return this.fetchJSON(endpoint);
+    getJSON<T=any>(endpoint: string): Promise<T> {
+        return this.fetchJSON<T>(endpoint);
     }
 
-    putJSON(endpoint: string, body: unknown) {
-        return this.fetchJSON(endpoint, {
+    putJSON<T=any>(endpoint: string, body: unknown): Promise<T> {
+        return this.fetchJSON<T>(endpoint, {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(body)
         })
     }
 
-    async postJSON(endpoint: string, body: unknown) {
-        return this.fetchJSON(endpoint, {
+    async postJSON<T=any>(endpoint: string, body: unknown): Promise<T> {
+        return this.fetchJSON<T>(endpoint, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(body)
@@ -121,28 +121,28 @@ export class APISession {
     /**
      * Perform a `GET` request.
      */
-    get(endpoint: string) {
+    get(endpoint: string): Promise<Response> {
         return this.fetch(endpoint, {method: 'GET'})
     }
 
     /**
      * Perform a `HEAD` request.
      */
-    head(endpoint: string) {
+    head(endpoint: string): Promise<Response> {
         return this.fetch(endpoint, {method: 'HEAD'});
     }
 
     /**
      * Perform a `DELETE` request.
      */
-    delete(endpoint: string) {
+    delete(endpoint: string): Promise<Response> {
         return this.fetch(endpoint, {method: 'HEAD'});
     }
 
     /**
      * Perform a `OPTIONS` request.
      */
-    options(endpoint: string) {
+    options(endpoint: string): Promise<Response> {
         return this.fetch(endpoint, {method: 'OPTIONS'});
     }
 }
