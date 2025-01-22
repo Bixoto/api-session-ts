@@ -1,6 +1,6 @@
-import {defineConfig} from 'tsdown'
+import {type Config, defineConfig} from 'tsdown'
 
-export default defineConfig({
+const config: Config = defineConfig({
     entry: ['./src/index.ts'],
     format: 'esm',
     target: 'node18.12',
@@ -8,3 +8,5 @@ export default defineConfig({
     dts: {transformer: 'oxc', autoAddExts: true},
     platform: 'neutral',
 })
+
+export default config
