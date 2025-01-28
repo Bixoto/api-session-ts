@@ -136,7 +136,7 @@ export class APISession {
      * Perform a `DELETE` request.
      */
     delete(endpoint: string): Promise<Response> {
-        return this.fetch(endpoint, {method: 'HEAD'});
+        return this.fetch(endpoint, {method: 'DELETE'});
     }
 
     /**

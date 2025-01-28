@@ -1,5 +1,9 @@
 # api-session-ts Changelog
 
+## 0.0.6 (2025/01/28)
+
+* Fix the HTTP method of `.delete()`
+
 ## 0.0.5 (2025/01/22)
 
 * Fix exports again
