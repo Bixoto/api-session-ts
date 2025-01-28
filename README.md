@@ -3,7 +3,7 @@
 **api-session-ts** is a TypeScript version of [api-session](https://github.com/Bixoto/api-session), a lightweight base
 HTTP API client.
 
-Note: This is a work-in-progress as we import private code into the library.
+Note: 0.0.x releases are a work-in-progress as we import private code into the library.
 
 ## Install
 
