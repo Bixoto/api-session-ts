@@ -1,6 +1,6 @@
 {
   "name": "api-session-ts",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "type": "module",
   "scripts": {
     "build": "tsdown",
@@ -29,6 +29,7 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
+    "./utils": "./dist/utils.js",
     "./package.json": "./package.json"
   },
   "files": [

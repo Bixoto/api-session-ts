@@ -1,6 +1,6 @@
 # api-session-ts Changelog
 
-## 0.0.7 (2025/08/26)
+## 0.0.7, 0.0.8, 0.0.9 (2025/08/26)
 
 * Add `api-session-ts/utils` with `makeURLSearchParams`
 
