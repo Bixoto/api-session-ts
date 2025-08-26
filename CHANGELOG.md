@@ -1,5 +1,9 @@
 # api-session-ts Changelog
 
+## 0.0.7 (2025/08/26)
+
+* Add `api-session-ts/utils` with `makeURLSearchParams`
+
 ## 0.0.6 (2025/01/28)
 
 * Fix the HTTP method of `.delete()`
