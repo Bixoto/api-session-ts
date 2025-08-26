@@ -11,3 +11,9 @@ Note: 0.0.x releases are a work-in-progress as we import private code into the l
 ## Usage
 
 TODO
+
+## Publish
+
+    npm run build
+    npm publish
+
