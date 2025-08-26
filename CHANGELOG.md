@@ -1,8 +1,14 @@
 # api-session-ts Changelog
 
-## 0.0.7, 0.0.8, 0.0.9 (2025/08/26)
+## 0.0.10 (2025/08/26)
+
+* Add `.headOk`
+
+## 0.0.9 (2025/08/26)
 
 * Add `api-session-ts/utils` with `makeURLSearchParams`
+
+Intermediary versions have broken builds.
 
 ## 0.0.6 (2025/01/28)
 
@@ -25,7 +31,7 @@
 
 * Add `HTTPError`
 * Add default headers, default user-agent, `readonly`
-* Add `.fetch()`, `.getJSON()`, `postJSON`, `putJSON`, `get`, `head`, `delete_`, `options`
+* Add `.fetch`, `.getJSON`, `postJSON`, `putJSON`, `get`, `head`, `delete_`, `options`
 
 ## 0.0.1 (2025/01/21)
 
