@@ -132,6 +132,17 @@ export class APISession {
         return this.fetch(endpoint, {method: 'HEAD'});
     }
 
+    async headOk(endpoint: string): Promise<boolean> {
+        try {
+            await this.head(endpoint);
+        } catch (e) {
+            if (e instanceof HTTPError && e.response.status == 404) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * Perform a `DELETE` request.
      */
