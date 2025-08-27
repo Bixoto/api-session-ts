@@ -1,5 +1,9 @@
 # api-session-ts Changelog
 
+## 0.0.11 (2025/08/27)
+
+* Add the `coerce_dates` option
+
 ## 0.0.10 (2025/08/26)
 
 * Add `.headOk`

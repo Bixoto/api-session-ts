@@ -6,7 +6,8 @@
     "build": "tsdown",
     "dev": "tsdown --watch",
     "typecheck": "tsc --noEmit",
-    "test": "true"
+    "test": "vitest --mode test",
+    "test:once": "vitest run"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,8 @@
   "devDependencies": {
     "oxc-transform": "^0.47.1",
     "tsdown": "^0.5.3",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vitest": "^3.2.4"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",

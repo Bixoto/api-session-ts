@@ -1,3 +1,5 @@
+import {coerceDates} from "./utils";
+
 export class HTTPError extends Error {
     response: Response;
     url: string;
@@ -14,13 +16,14 @@ export class HTTPError extends Error {
 }
 
 export type Init = RequestInit & {
-    headers?: Record<string, string>
+    headers?: Record<string, string>,
 }
 
 export class APISession {
     readonly base_url: string;
     readonly headers: Record<string, string>;
     readonly readonly: boolean;
+    readonly coerce_dates: boolean;
 
     static readonly READ_METHODS: Set<string> = new Set(['CONNECT', 'GET', 'HEAD', 'OPTIONS', 'TRACE'])
 
@@ -32,6 +35,7 @@ export class APISession {
         headers?: Record<string, string>,
         user_agent?: string,
         readonly?: boolean,
+        coerce_dates?: boolean,
     }) {
         if (!options) {
             options = {}
@@ -40,6 +44,7 @@ export class APISession {
         this.base_url = base_url;
         this.headers = options.headers || {};
         this.readonly = options.readonly || false;
+        this.coerce_dates = options.coerce_dates ?? false;
 
         if (options.user_agent) {
             this.headers["User-Agent"] = options.user_agent;
@@ -93,16 +98,21 @@ export class APISession {
         return response;
     }
 
-    async fetchJSON<T=any>(endpoint: string, init?: Init): Promise<T> {
+    async fetchJSON<T = any>(endpoint: string, init?: Init): Promise<T> {
         const req = await this.fetch(endpoint, init);
-        return await req.json() as T;
+        const res = await req.json() as T;
+
+        if (this.coerce_dates) {
+            return coerceDates(res);
+        }
+        return res;
     }
 
-    getJSON<T=any>(endpoint: string): Promise<T> {
+    getJSON<T = any>(endpoint: string): Promise<T> {
         return this.fetchJSON<T>(endpoint);
     }
 
-    putJSON<T=any>(endpoint: string, body: unknown): Promise<T> {
+    putJSON<T = any>(endpoint: string, body: unknown): Promise<T> {
         return this.fetchJSON<T>(endpoint, {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
@@ -110,7 +120,7 @@ export class APISession {
         })
     }
 
-    async postJSON<T=any>(endpoint: string, body: unknown): Promise<T> {
+    async postJSON<T = any>(endpoint: string, body: unknown): Promise<T> {
         return this.fetchJSON<T>(endpoint, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
