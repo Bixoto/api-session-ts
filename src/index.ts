@@ -19,6 +19,7 @@ export type Init = RequestInit & {
     headers?: Record<string, string>,
 }
 
+// noinspection JSUnusedGlobalSymbols
 export class APISession {
     readonly base_url: string;
     readonly headers: Record<string, string>;
@@ -133,6 +134,14 @@ export class APISession {
     async postJSON<T = any>(endpoint: string, body: unknown): Promise<T> {
         return this.fetchJSON<T>(endpoint, {
             method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        })
+    }
+
+    async deleteJSON<T = any>(endpoint: string, body: unknown): Promise<T> {
+        return this.fetchJSON<T>(endpoint, {
+            method: 'DELETE',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(body)
         })
