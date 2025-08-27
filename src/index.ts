@@ -1,4 +1,4 @@
-import {coerceDates} from "./utils";
+import {coerceDates, isDateField} from "./utils";
 
 export class HTTPError extends Error {
     response: Response;
@@ -23,7 +23,9 @@ export class APISession {
     readonly base_url: string;
     readonly headers: Record<string, string>;
     readonly readonly: boolean;
-    readonly coerce_dates: boolean;
+    readonly is_date_field: (k: string, v: unknown) => boolean = isDateField;
+    readonly coerce_dates: boolean = true;
+    readonly keep_invalid_dates: boolean = true;
 
     static readonly READ_METHODS: Set<string> = new Set(['CONNECT', 'GET', 'HEAD', 'OPTIONS', 'TRACE'])
 
@@ -35,7 +37,8 @@ export class APISession {
         headers?: Record<string, string>,
         user_agent?: string,
         readonly?: boolean,
-        coerce_dates?: boolean,
+        coerce_dates?: boolean | ((k: string, v: unknown) => boolean),
+        keep_invalid_dates?: boolean,
     }) {
         if (!options) {
             options = {}
@@ -44,7 +47,14 @@ export class APISession {
         this.base_url = base_url;
         this.headers = options.headers || {};
         this.readonly = options.readonly || false;
-        this.coerce_dates = options.coerce_dates ?? false;
+        this.keep_invalid_dates = options.keep_invalid_dates ?? true;
+
+        if (options.coerce_dates === true || options.coerce_dates === false) {
+            this.coerce_dates = options.coerce_dates;
+        } else if (typeof options.coerce_dates === 'function') {
+            this.coerce_dates = true;
+            this.is_date_field = options.coerce_dates;
+        }
 
         if (options.user_agent) {
             this.headers["User-Agent"] = options.user_agent;
@@ -103,7 +113,7 @@ export class APISession {
         const res = await req.json() as T;
 
         if (this.coerce_dates) {
-            return coerceDates(res);
+            return coerceDates(res, {is_date_field: this.is_date_field, keep_invalid: this.keep_invalid_dates});
         }
         return res;
     }

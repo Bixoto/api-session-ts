@@ -1,5 +1,11 @@
 # api-session-ts Changelog
 
+## 0.0.12 (2025/08/27)
+
+* Accept a function for `coerce_dates`
+* Automatically coerce dates for fields ending with `_at` or `_date`
+* Add `is_date_field`, `keep_invalid_dates` options
+
 ## 0.0.11 (2025/08/27)
 
 * Add the `coerce_dates` option
