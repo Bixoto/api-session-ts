@@ -1,5 +1,9 @@
 # api-session-ts Changelog
 
+## 0.0.13 (2025/08/27)
+
+* Add `.deleteJSON`
+
 ## 0.0.12 (2025/08/27)
 
 * Accept a function for `coerce_dates`
